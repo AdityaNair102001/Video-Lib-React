@@ -1,0 +1,158 @@
+body {
+  margin: 0;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.wrapper-home {
+  display: grid;
+  grid-template-areas:
+    "h h h"
+    "n m m"
+    "n m m";
+  grid-template-columns: 0.3fr 2.8fr;
+  grid-template-rows: 4rem auto;
+  position: relative;
+}
+
+.wrapper-likedvideos {
+  display: grid;
+  grid-template-areas:
+    "h h h"
+    "n m m"
+    "n m m";
+  grid-template-columns: 0.2fr 2.8fr;
+  grid-template-rows: 2rem auto;
+  position: relative;
+}
+
+.wrapper-playlist {
+  display: grid;
+  grid-template-areas:
+    "h h h"
+    "m m m"
+    "m m m";
+  grid-template-columns: 0fr 2.8fr;
+  /* grid-template-rows: 0.6fr 7fr; */
+  grid-template-rows: 2rem auto;
+  position: relative;
+  overflow-x: auto;
+  overflow-x: hidden;
+}
+
+.wrapper-history {
+  display: grid;
+  grid-template-areas:
+    "h h h"
+    "m m m"
+    "m m m";
+  grid-template-columns: 0.2fr 2.8fr;
+  grid-template-rows: 2rem auto;
+  position: relative;
+}
+
+.wrapper-landingpage {
+  background-color: white;
+  height: 100vh;
+  /* display: flex;
+  flex-direction: column; */
+  justify-items: start;
+  width: 50vh;
+  margin: auto;
+  grid-template-rows: 1fr 2fr 1fr;
+}
+
+.header {
+  grid-area: h;
+  height: 10vh;
+  background-color: black;
+  position: relative;
+  margin-bottom: 0 rem;
+  box-shadow: 0 4px 8px 0 rgb(90, 87, 87), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: fixed;
+  width: 100%;
+  height: 4.2rem;
+  top: 0%;
+  z-index: 1;
+}
+
+.main-home {
+  grid-area: m;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0rem;
+  margin-top: 1rem;
+}
+
+.main-likedvideos {
+  grid-area: m;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3rem;
+}
+
+.main-history {
+  grid-area: m;
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 25%; */
+  margin: auto;
+  margin-top: 3rem;
+  width: 100%;
+
+  /* overflow-x: scroll; */
+}
+
+.main-playlist {
+  grid-area: m;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 3rem;
+}
+
+.video-container {
+  padding: 0rem 0rem;
+  border: 0.5px solid grey;
+  margin: 0.5rem;
+  /* width: fit-content; */
+  width: 20rem;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+  /* position: relative;
+  padding-top: 56.25%  */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.LikedHistoryButtons {
+  display: flex;
+  margin: 1 rem;
+  position: absolute;
+  right: 2%;
+  top: 30%;
+}
+
+.alert {
+  width: 7rem;
+  min-height: 1rem;
+  background-color: white;
+  border: 1px rgb(240, 236, 236) solid;
+  text-align: center;
+  padding: 0.5rem;
+  margin: 1rem;
+  color: rgb(0, 0, 0);
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: auto;
+}
+
+.alertText {
+  font-size: small;
+  font-weight: bold;
+}
