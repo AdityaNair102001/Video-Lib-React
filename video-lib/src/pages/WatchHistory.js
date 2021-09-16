@@ -58,9 +58,9 @@ export function WatchHistory() {
       });
     } else {
       return (
-        <h2 style={{ margin: "auto", marginTop: "10%", marginLeft: "40%" }}>
+        <h2 style={{ margin: "auto", marginTop: "10%" }}>
           {" "}
-          No liked videos
+          No History Yet.
         </h2>
       );
     }

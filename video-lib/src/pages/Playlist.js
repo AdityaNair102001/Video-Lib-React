@@ -109,7 +109,8 @@ export function PlayList() {
   function RenderPlaylists({ playlists }) {
     const playlistArray = Object.keys(playlists);
 
-    return playlistArray
+    if(playlistArray.length>0){
+      return playlistArray
       .reduce(function (result, playlistName) {
         if (playlistName !== "Watch Later") {
           result.push(playlistName);
@@ -124,14 +125,39 @@ export function PlayList() {
           ></SinglePlaylistHorizontalSlot>
         );
       });
+    }else{
+      return (
+        <h2 style={{ margin: "auto", marginTop: "10%" }}>
+          {" "}
+          No Playlists Made!
+        </h2>
+      );
+    }
+ 
   }
 
   function WatchLater({ watchLater }) {
-    return (
-      <SinglePlaylistHorizontalSlot
-        playlistName={"Watch Later"}
-      ></SinglePlaylistHorizontalSlot>
-    );
+    // if(watchLater.length>0){
+    //   return (
+    //     <SinglePlaylistHorizontalSlot
+    //       playlistName={"Watch Later"}
+    //     ></SinglePlaylistHorizontalSlot>
+    //   );
+    // }else{
+    //   return (
+    //     <h2 style={{ margin: "auto", marginTop: "10%" }}>
+    //       {" "}
+    //       Nothing in Watch Later!
+    //     </h2>
+    //   );
+    // }
+
+        return (
+        <SinglePlaylistHorizontalSlot
+          playlistName={"Watch Later"}
+        ></SinglePlaylistHorizontalSlot>
+      );
+  
   }
 
   async function getPlaylists() {
@@ -163,7 +189,8 @@ export function PlayList() {
       <div className="main-playlist" style={{}}>
         {playlists ? (
           <div style={{ width: "100%", margin: "auto" }}>
-            <WatchLater watchLater={playlists["Watch Later"]}></WatchLater>
+            {playlists["Watch Later"]!=undefined?<WatchLater watchLater={playlists["Watch Later"]}></WatchLater>:<div></div>}
+            
             <RenderPlaylists playlists={playlists}></RenderPlaylists>
           </div>
         ) : (
