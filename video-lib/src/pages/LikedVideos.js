@@ -64,6 +64,12 @@ export function LikedVideosPage() {
     );
   }
 
+  function DeleteButton(){
+    // const [color,setColor]=useState("black")
+    const deleteRef=useRef("black");
+    return ( <span class="material-icons" style={{position:"absolute"}} ref={deleteRef}  onMouseEnter={()=>{deleteRef.current.style.color="red"; deleteRef.current.style.fontSize="32px"}} onMouseLeave={()=>{deleteRef.current.style.color="black";deleteRef.current.style.fontSize="24px"}} >delete</span>)
+  }
+
   function RenderVideos(videos) {
     if (videos.length > 0) {
       return videos.map((item) => {
@@ -87,7 +93,9 @@ export function LikedVideosPage() {
                   border: "none"
                 }}
               >
-                <span class="material-icons">delete</span>
+                <div style={{height:"1rem"}}>
+               <DeleteButton></DeleteButton>
+               </div>
               </button>
             </div>
           </div>
