@@ -4,7 +4,7 @@ import { AuthContext } from "../AuthProvider";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-import loading from "../1494.gif";
+import loading from "../loginLoader.gif";
 
 export function Login() {
   const [field, setField] = useState({});

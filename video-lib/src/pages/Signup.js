@@ -9,7 +9,7 @@ import {
   Link,
   useNavigate
 } from "react-router-dom";
-import loading from "../1494.gif";
+import loading from "../loginLoader.gif";
 
 export function Signup() {
   const [field, setField] = useState({});
