@@ -91,7 +91,7 @@ export function LandingPage() {
         <div class="inputtext-holder" style={{ margin: "1rem" }}>
           <input
             class="input-standard"
-            style={{ width: "20rem", backgroundColor: "black", color: "white" }}
+            // className="input-standard"
             type="text"
             placeholder="Username"
             onChange={(event) => onChangeHandler(event, { type: "username" })}
@@ -100,7 +100,7 @@ export function LandingPage() {
         <div class="inputtext-holder" style={{ margin: "1rem" }}>
           <input
             class="input-standard"
-            style={{ width: "20rem", backgroundColor: "black", color: "white" }}
+            // className="input-standard"
             type="password"
             placeholder="Password"
             onChange={(event) => onChangeHandler(event, { type: "password" })}
@@ -133,7 +133,7 @@ export function LandingPage() {
           </button>
         </div>
 
-        <div style={{ margin: "1rem" }}>
+        <div style={{ marginBottom: "2.3rem" }}>
           {showLoader ? <img alt="Signing in.." src={loading} /> : ""}
         </div>
 
