@@ -133,20 +133,34 @@ export function LandingPage() {
           </button>
         </div>
 
-        <div style={{ marginBottom: "2.3rem" }}>
-          {showLoader ? <img alt="Signing in.." src={loading} /> : ""}
-        </div>
+        <div>{showLoader ? <img alt="Signing in.." src={loading} /> : ""}</div>
 
         {loginError ? (
-          <div style={{}} class="alert">
-            <span class="alertText">{loginError}</span>
+          <div style={{}} className="alert">
+            <span style={{}} class="alertText">
+              {loginError}
+            </span>
           </div>
         ) : (
-          ""
+          <div style={{ marginTop: "1.5rem" }}></div>
+          // <div
+          //   style={{ visibility: "hidden", position: "absolute" }}
+          //   className="alert"
+          //   hidden
+          // >
+          //   <span style={{}} class="alertText">
+          //     {loginError}
+          //   </span>
+          // </div>
         )}
 
         <h3
-          style={{ marginBlock: "0rem", paddingBottom: "1rem", color: "white" }}
+          style={{
+            marginBlock: "0rem",
+            paddingBottom: "1rem",
+            color: "white",
+            // marginTop: "1rem",
+          }}
         >
           Don't have an account?{" "}
           <em>

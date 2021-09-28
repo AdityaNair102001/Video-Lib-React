@@ -4,6 +4,12 @@ body {
 .App {
   font-family: sans-serif;
   text-align: center;
+  position: fixed;
+  left: 0rem;
+  right: 0rem;
+  top: 0rem;
+  bottom: 0rem;
+  overflow-y: auto;
 }
 .wrapper-home {
   display: grid;
@@ -144,16 +150,18 @@ body {
 
 .alert {
   width: 7rem;
-  min-height: 1rem;
+  height: 1rem;
   background-color: white;
   border: 1px rgb(240, 236, 236) solid;
   text-align: center;
   padding: 0.5rem;
-  margin: 1rem;
+  /* margin: 1rem; */
   color: rgb(0, 0, 0);
   border-radius: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: auto;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
 }
 
 .alertText {
@@ -161,20 +169,14 @@ body {
   font-weight: bold;
 }
 
-/* clip-path: polygon(25px 0%, calc(100% - 25px) 0%, 100% 100%, 0% 100%) */
-
-/* linear-gradient(to top, rgb(249, 249, 251) 0%, rgb(51, 51, 51) 100%); */
-
 .pulse {
   background-color: white;
   padding: 0.5rem 1rem;
-  /* box-shadow: 0 0 0 2em rgba(#fff, 0); */
   font-family: "Times New Roman", Times, serif;
   font-size: medium;
   font-weight: bold;
   border: none;
-  /* padding: 1rem; */
-  width: 15rem;
+  width: 20%;
   height: 3.5rem;
   margin: 1rem;
   border-radius: 0.25rem;
@@ -191,7 +193,7 @@ body {
   100% {
     /* box-shadow: inset 0px 0px 0px 20px rgb(251 11 11 / 20%); */
     /* box-shadow: inset 1rem 1rem 0px 20px rgb(0, 0, 0); */
-    box-shadow: inset 15rem 0 0 0 rgb(0, 0, 0);
+    box-shadow: inset 30rem 0 0 0 rgb(0, 0, 0);
     color: white;
     border: 1px white solid;
   }
@@ -207,23 +209,12 @@ body {
   .landing-logo {
     width: 50%;
   }
+
+  .pulse {
+    width: 70%;
+  }
 }
 
-/* $colors: (
-  fill: #a972cb,
-  pulse: #ef6eae, 
-  close: #ff7f82, 
-  raise: #ffa260, 
-  up: #e4cb58, 
-  slide: #8fc866, 
-  offset: #19bc8b
-);
-
-// Sass variables compile to a static string; CSS variables are dynamic and inherited
-  // Loop through the map and set CSS custom properties using Sass variables
-@each $button, $color in $colors {
-  .#{$button} {
-    --color: #{$color};
-    --hover: #{adjust-hue($color, 45deg)};
-  }
-} */
+html {
+  min-height: 100vh;
+}
