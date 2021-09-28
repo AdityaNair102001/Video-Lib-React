@@ -7,22 +7,21 @@ import {
   Routes,
   Route,
   Link,
-  useNavigate
+  useNavigate,
 } from "react-router-dom";
 import loading from "../loginLoader.gif";
 
 export function Signup() {
   const [field, setField] = useState({});
 
-  const [view, setView] = useState();
-
   const navigate = useNavigate();
 
-  const { showLoader, loginError,setLoginError,setShowLoader } = useContext(AuthContext);
+  const { showLoader, loginError, setLoginError, setShowLoader } =
+    useContext(AuthContext);
 
   async function postData(field) {
     try {
-      setShowLoader(true)
+      setShowLoader(true);
       const data = field;
       console.log(data);
       const response = await axios.post(
@@ -31,19 +30,19 @@ export function Signup() {
       );
       console.log(response);
       if (response.data.success === true) {
-        setShowLoader(false)
+        setShowLoader(false);
         navigate("/login", { replace: true });
         console.log("sucessfully posted");
-      }else{
-        setShowLoader(false)
+      } else {
+        setShowLoader(false);
         setLoginError(response.data.message);
         signUpErrorHandler();
       }
     } catch (err) {
-      setShowLoader(false)
+      setShowLoader(false);
       setLoginError(err.response.data.message);
       signUpErrorHandler();
-     
+
       console.log(err);
     }
   }
@@ -73,13 +72,13 @@ export function Signup() {
   }
 
   return (
-    <div>
-      <h1>Sign up</h1>
+    <div style={{ minHeight: "100vh" }}>
+      <h1 style={{ marginTop: "0rem", color: "white" }}>Sign up</h1>
 
       <div class="inputtext-holder" style={{ margin: "1rem" }}>
         <input
           class="input-standard"
-          style={{ width: "20rem" }}
+          style={{ width: "100%" }}
           type="text"
           placeholder="First Name"
           onChange={(event) => onChangeHandler(event, { type: "fname" })}
@@ -88,7 +87,7 @@ export function Signup() {
       <div class="inputtext-holder" style={{ margin: "1rem" }}>
         <input
           class="input-standard"
-          style={{ width: "20rem" }}
+          style={{ width: "100%" }}
           type="text"
           placeholder="Last Name"
           onChange={(event) => onChangeHandler(event, { type: "lname" })}
@@ -97,7 +96,7 @@ export function Signup() {
       <div class="inputtext-holder" style={{ margin: "1rem" }}>
         <input
           class="input-standard"
-          style={{ width: "20rem" }}
+          style={{ width: "100%" }}
           type="text"
           placeholder="Username"
           onChange={(event) => onChangeHandler(event, { type: "username" })}
@@ -106,7 +105,7 @@ export function Signup() {
       <div class="inputtext-holder" style={{ margin: "1rem" }}>
         <input
           class="input-standard"
-          style={{ width: "20rem" }}
+          style={{ width: "100%" }}
           type="text"
           placeholder="Email"
           onChange={(event) => onChangeHandler(event, { type: "email" })}

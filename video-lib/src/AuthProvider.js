@@ -76,7 +76,7 @@ export function AuthContextProvider({ children }) {
         setShowLoader,
         loginError,
         setLoginError,
-        setupAuthHeaderForServiceCalls
+        setupAuthHeaderForServiceCalls,
         // showProcessLoader,
         // setShowProcessLoader
       }}
