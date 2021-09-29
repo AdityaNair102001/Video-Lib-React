@@ -9,9 +9,8 @@ import loading from "../loginLoader.gif";
 export function Login() {
   const [field, setField] = useState({});
 
-  const { loginWithCredentials, showLoader, loginError } = useContext(
-    AuthContext
-  );
+  const { loginWithCredentials, showLoader, loginError } =
+    useContext(AuthContext);
 
   function onChangeHandler(event, { type }) {
     if (type === "username") {
@@ -26,8 +25,17 @@ export function Login() {
   }
 
   return (
-    <div>
-      <h1>Login Page</h1>
+    <div
+      style={{
+        backgroundColor: "black",
+        position: "fixed",
+        top: "0rem",
+        left: "0rem",
+        right: "0rem",
+        bottom: "0rem",
+      }}
+    >
+      <h1 style={{ color: "white" }}>Login Page</h1>
 
       <div class="inputtext-holder" style={{ margin: "1rem" }}>
         <input
@@ -48,11 +56,7 @@ export function Login() {
         ></input>
       </div>
 
-      <button
-        class="primary-button-blue"
-        style={{ background: "black", color: "white" }}
-        onClick={() => LoginHandler()}
-      >
+      <button class="pulse" onClick={() => LoginHandler()}>
         Login
       </button>
       <div style={{ margin: "1rem" }}>
@@ -65,11 +69,11 @@ export function Login() {
       ) : (
         ""
       )}
-      <h3>
+      <h3 style={{ color: "white" }}>
         Don't have an account?{" "}
         <em>
           <Link
-            style={{ color: "black", textDecoration: "none" }}
+            style={{ color: "white", textDecoration: "none" }}
             to="/signup"
             replace
           >
