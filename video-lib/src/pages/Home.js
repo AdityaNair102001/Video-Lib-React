@@ -46,7 +46,12 @@ export function Home() {
     }
   }
 
-  async function addToPlaylist(videoId, playlistName, setOpenSnackbar) {
+  async function addToPlaylist(
+    videoId,
+    playlistName,
+    setOpenSnackbar,
+    openSnackbar
+  ) {
     try {
       showProcessLoader.current.style.visibility = "visible";
       const response = await axios.post(
@@ -55,13 +60,17 @@ export function Home() {
           userId: JSON.parse(localStorage.getItem("user"))._id,
           playlist: playlistName,
           type: "ADD_TO_PLAYLIST",
-          videoId
+          videoId,
         }
       );
       console.log(response);
       if (response.data.success === true) {
         // setShowProcessLoader(false);
-        setOpenSnackbar(true);
+        setOpenSnackbar({
+          ...openSnackbar,
+          message: "Added to Playlist!",
+          open: true,
+        });
         showProcessLoader.current.style.visibility = "hidden";
         localStorage.setItem("user", JSON.stringify(response.data.user));
       }
@@ -75,7 +84,8 @@ export function Home() {
     setShowNewPlaylistModal,
     setShowModal,
     videoId,
-    setOpenSnackbar
+    setOpenSnackbar,
+    openSnackbar,
   }) {
     const [playlistName, setPlaylistName] = useState("");
 
@@ -89,7 +99,7 @@ export function Home() {
               left: "0",
               width: "100vw",
               height: "100vh",
-              backgroundColor: "rgba(128,128,128,0.5)"
+              backgroundColor: "rgba(128,128,128,0.5)",
             }}
           >
             <div
@@ -103,7 +113,7 @@ export function Home() {
                 width: "15rem",
                 border: "2px black solid",
                 padding: "1rem 0rem 0.5rem 0rem",
-                backgroundColor: "white"
+                backgroundColor: "white",
               }}
             >
               <div>
@@ -114,7 +124,7 @@ export function Home() {
                     // left: "3.5rem",
                     right: "-45%",
                     bottom: "1rem",
-                    border: "none"
+                    border: "none",
                   }}
                   onClick={() => {
                     setShowNewPlaylistModal(false);
@@ -131,7 +141,12 @@ export function Home() {
               <div>
                 <button
                   onClick={() => {
-                    addToPlaylist(videoId, playlistName, setOpenSnackbar);
+                    addToPlaylist(
+                      videoId,
+                      playlistName,
+                      setOpenSnackbar,
+                      openSnackbar
+                    );
                     setShowNewPlaylistModal(false);
                   }}
                   style={{ marginTop: "0.5rem", backgroundColor: "white" }}
@@ -156,7 +171,7 @@ export function Home() {
             marginTop: "0rem",
             position: "fixed",
             marginLeft: "1rem",
-            visibility: "hidden"
+            visibility: "hidden",
           }}
           src={processLoader}
           alt="Processing"
@@ -169,7 +184,7 @@ export function Home() {
   function ModalAndAddToPlaylistButton({
     videoId,
     openSnackbar,
-    setOpenSnackbar
+    setOpenSnackbar,
   }) {
     const playlistsObject =
       JSON.parse(localStorage.getItem("user")) == null
@@ -193,7 +208,7 @@ export function Home() {
           width: "15rem",
           border: "2px black solid",
           padding: "1rem 0rem 0.5rem 0rem",
-          backgroundColor: "white"
+          backgroundColor: "white",
         }
       : {};
 
@@ -202,7 +217,7 @@ export function Home() {
         return;
       }
 
-      setOpenSnackbar(false);
+      setOpenSnackbar({ ...openSnackbar, open: false });
     };
 
     return (
@@ -214,7 +229,7 @@ export function Home() {
 
               marginTop: "1rem",
               border: "none",
-              backgroundColor: "white"
+              backgroundColor: "white",
               // msTransform: "translateY(-50%)",
               // transform: "translateY(-50%)"
             }}
@@ -235,14 +250,15 @@ export function Home() {
             </span>
           </button>
         </div>
+
         <Snackbar
-          open={openSnackbar}
+          open={openSnackbar.open}
           autoHideDuration={2000}
           onClose={handleClose}
-          // anchorOrigin={{
-          //   vertical: "bottom",
-          //   horizontal: "left"
-          // }}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
         >
           {/* <Alert onClose={handleClose} severity="success">
             This is a success message!
@@ -256,10 +272,11 @@ export function Home() {
               height: "2rem",
               paddingTop: "0.5rem",
               elevation: "3rem",
-              borderRadius: "5px"
+              borderRadius: "5px",
             }}
           >
-            Added to Playlist!
+            {/* Added to Playlist! */}
+            {openSnackbar.message}
           </div>
         </Snackbar>
 
@@ -271,7 +288,7 @@ export function Home() {
               left: "0",
               width: "100vw",
               height: "100vh",
-              backgroundColor: "rgba(128,128,128,0.5)"
+              backgroundColor: "rgba(128,128,128,0.5)",
             }}
           >
             <div style={modelBackground}>
@@ -282,7 +299,7 @@ export function Home() {
                   // left: "3.5rem",
                   right: "-45%",
                   bottom: "1rem",
-                  border: "none"
+                  border: "none",
                 }}
                 onClick={() => {
                   setShowModal(false);
@@ -297,7 +314,7 @@ export function Home() {
                   style={{
                     height: "40vh",
                     overflowY: "scroll",
-                    border: "1px grey solid"
+                    border: "1px grey solid",
                   }}
                 >
                   {playlistsArray.map((item) => {
@@ -324,12 +341,10 @@ export function Home() {
                       ? () => {
                           setShowNewPlaylistModal(true);
                           setShowModal(false);
-                          console.log("yo");
                         }
                       : () => {
                           setShowNewPlaylistModal(true);
                           setShowModal(false);
-                          console.log("yo");
                         }
                   }
                   style={{ backgroundColor: "white", marginTop: "0.8rem" }}
@@ -350,6 +365,7 @@ export function Home() {
             setShowModal={setShowModal}
             videoId={videoId}
             setOpenSnackbar={setOpenSnackbar}
+            openSnackbar={openSnackbar}
             // setShowProcessLoader={setShowProcessLoader}
           ></NewPlaylistModal>
         </div>
@@ -365,7 +381,7 @@ export function Home() {
           userId: JSON.parse(localStorage.getItem("user"))._id,
           videoId,
           type: "ADD_TO_PLAYLIST",
-          playlist: playlistName
+          playlist: playlistName,
         }
       );
     } catch (err) {
@@ -382,7 +398,7 @@ export function Home() {
             {
               userId: JSON.parse(localStorage.getItem("user"))._id,
               videoId,
-              type: "LIKE"
+              type: "LIKE",
               //  headers: { authorization: 'abcdefghi' }
             }
           );
@@ -407,7 +423,7 @@ export function Home() {
             "https://Video-Lib-Backend.adityanair14.repl.co/watchhistory",
             {
               userId: JSON.parse(localStorage.getItem("user"))._id,
-              videoId
+              videoId,
               //  headers: { authorization: 'abcdefghi' }
             }
           );
@@ -431,7 +447,7 @@ export function Home() {
             {
               userId: JSON.parse(localStorage.getItem("user"))._id,
               videoId,
-              type: "REMOVE"
+              type: "REMOVE",
             }
           );
 
@@ -465,7 +481,7 @@ export function Home() {
         style={{
           margin: "1rem 1rem",
           backgroundColor: "white",
-          border: "0px white solid"
+          border: "0px white solid",
         }}
         onClick={onClick}
       >
@@ -482,10 +498,16 @@ export function Home() {
     videoPlayingId,
     setVideoPlayingId,
     item,
-    defaultLikeState
+    defaultLikeState,
   }) {
     const [likeState, setLikeState] = useState(defaultLikeState);
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+    // const [openSnackbar, setOpenSnackbar] = useState(false);
+
+    const [openSnackbar, setOpenSnackbar] = useState({
+      open: false,
+      message: null,
+    });
+
     return (
       <div key={item._id} className="video-container">
         <ReactPlayer
@@ -496,10 +518,9 @@ export function Home() {
           height="200px"
           onPlay={() => {
             caliberate(item._id, videoPlayingId, setVideoPlayingId);
-            if(localStorage.getItem("accessToken")){
+            if (localStorage.getItem("accessToken")) {
               watchHistory(item._id);
             }
-           
           }}
         />
         <h4 style={{ textAlign: "left", margin: "1rem", width: "100%" }}>
@@ -511,9 +532,11 @@ export function Home() {
               margin: "1rem",
               marginRight: "5rem",
               backgroundColor: "white",
-              border: "none"
+              border: "none",
             }}
-            onClick={() => addToWatchLater(item._id, setOpenSnackbar)}
+            onClick={() =>
+              addToWatchLater(item._id, setOpenSnackbar, openSnackbar)
+            }
           >
             <span class="material-icons">watch_later</span>
           </button>
@@ -562,7 +585,7 @@ export function Home() {
     );
   }
 
-  async function addToWatchLater(videoId, setOpenSnackbar) {
+  async function addToWatchLater(videoId, setOpenSnackbar, openSnackbar) {
     try {
       showProcessLoader.current.style.visibility = "visible";
       const response = await axios.post(
@@ -571,12 +594,16 @@ export function Home() {
           userId: JSON.parse(localStorage.getItem("user"))._id,
           playlist: "Watch Later",
           type: "ADD_TO_PLAYLIST",
-          videoId
+          videoId,
         }
       );
       if (response.data.success === true) {
         // setShowProcessLoader(false);
-        setOpenSnackbar(true);
+        setOpenSnackbar({
+          ...openSnackbar,
+          message: "Added to Watch Later",
+          open: true,
+        });
         showProcessLoader.current.style.visibility = "hidden";
         localStorage.setItem("user", JSON.stringify(response.data.user));
       }
