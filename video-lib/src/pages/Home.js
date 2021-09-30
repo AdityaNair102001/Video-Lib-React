@@ -275,7 +275,6 @@ export function Home() {
               borderRadius: "5px",
             }}
           >
-            {/* Added to Playlist! */}
             {openSnackbar.message}
           </div>
         </Snackbar>
