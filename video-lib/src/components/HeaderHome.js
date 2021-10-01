@@ -103,18 +103,7 @@ export function HeaderHome() {
         </div>
 
         {localStorage.getItem("accessToken") ? (
-          <span
-            style={{
-              position: "relative",
-              right: "40%",
-              top: "5%",
-              color: "white",
-              background: "black",
-              border: "none",
-              fontSize: "1rem",
-              textDecoration: "none",
-            }}
-          >
+          <span className="greeting" style={{}}>
             <button
               className="logout-btn"
               style={{ backgroundColor: "black", border: "none" }}
@@ -130,7 +119,7 @@ export function HeaderHome() {
               </span>
             </button>
 
-            <span style={{ marginLeft: "0.8rem" }}>
+            <span style={{}}>
               Hi {JSON.parse(localStorage.getItem("user")).fname} !
             </span>
           </span>

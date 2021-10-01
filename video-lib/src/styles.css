@@ -206,7 +206,29 @@ body {
   border: 1px white solid;
 }
 
+.greeting {
+  position: absolute;
+  left: 1%;
+  top: 40%;
+  color: white;
+  background: black;
+  border: none;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
 @media (max-width: 40em) {
+  .greeting {
+    position: absolute;
+    left: 3%;
+    top: 60%;
+    color: white;
+    background: black;
+    border: none;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
   .landing-logo {
     width: 50%;
   }
@@ -256,7 +278,7 @@ body {
   .menu-cover {
     position: fixed;
     left: 0rem;
-    top: 10vh;
+    top: 9vh;
     width: 100vw;
     height: 0vh;
     background-color: rgb(8 7 7 / 89%);
