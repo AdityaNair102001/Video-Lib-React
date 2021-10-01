@@ -105,10 +105,9 @@ export function HeaderHome() {
         {localStorage.getItem("accessToken") ? (
           <span
             style={{
-              position: "absolute",
-              margin: "1rem",
-              left: "3%",
-              top: "20%",
+              position: "relative",
+              right: "40%",
+              top: "5%",
               color: "white",
               background: "black",
               border: "none",
@@ -116,7 +115,10 @@ export function HeaderHome() {
               textDecoration: "none",
             }}
           >
-            <button style={{ backgroundColor: "black", border: "none" }}>
+            <button
+              className="logout-btn"
+              style={{ backgroundColor: "black", border: "none" }}
+            >
               <span
                 onClick={() => {
                   logout();
