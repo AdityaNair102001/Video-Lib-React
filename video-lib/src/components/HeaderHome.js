@@ -1,6 +1,6 @@
 import "../styles.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../AuthProvider";
 
 export function HeaderHome() {
@@ -23,39 +23,115 @@ export function HeaderHome() {
   const hamburgerRef2 = useRef("");
   const hamburgerRef3 = useRef("");
 
+  useEffect(() => {
+    menuRef.current.style.visibility = "hidden";
+  });
+
   function MenuCover() {
-    return <div className="menu-cover" style={{}} ref={menuRef}></div>;
+    return (
+      <div className="menu-cover" style={{}} ref={menuRef}>
+        <div style={{ marginTop: "5%" }}>
+          <h2
+            style={{
+              color: "white",
+              cursor: "pointer",
+              fontFamily: "Cormorant Unicase",
+            }}
+          >
+            Hi {JSON.parse(localStorage.getItem("user")).fname}!
+          </h2>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            height: "50vh",
+          }}
+        >
+          <div>
+            <Link
+              to="/likedvideos"
+              style={{
+                margin: "1rem",
+                border: "none",
+                backgroundColor: "black",
+              }}
+            >
+              <span className="gicon-style">
+                <span style={{ fontSize: "4rem" }} class="material-icons">
+                  favorite
+                </span>
+              </span>
+            </Link>
+          </div>
+
+          <div>
+            <Link
+              to="/history"
+              style={{
+                margin: "1rem",
+                border: "none",
+                backgroundColor: "black",
+              }}
+            >
+              <span className="gicon-style">
+                <span style={{ fontSize: "4rem" }} class="material-icons">
+                  history
+                </span>
+              </span>
+            </Link>
+          </div>
+
+          <div>
+            <Link
+              to="/playlists"
+              style={{
+                margin: "1rem",
+                backgroundColor: "black",
+                border: "none",
+              }}
+            >
+              <span className="gicon-style">
+                <span style={{ fontSize: "4rem" }} class="material-icons">
+                  video_library
+                </span>
+              </span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div>
       <MenuCover></MenuCover>
       <div className="header">
-        <button
-          style={{
-            border: "none",
-            backgroundColor: "black",
-            padding: "0rem",
-            margin: "0rem",
-            width: "0rem",
-          }}
+        <h1
           onClick={() => headerHandler()}
+          style={{
+            cursor: "pointer",
+            fontSize: "2rem",
+            fontWeight: "100",
+            color: "white",
+          }}
         >
-          <h1 style={{ fontSize: "2rem", fontWeight: "100", color: "white" }}>
-            Netr:
-          </h1>
-        </button>
+          Netr:
+        </h1>
 
         <div
           className="hamburger-btn"
           onClick={() => {
             if (menuStatus.current === true) {
+              menuRef.current.style.visibility = "hidden";
               menuRef.current.style.height = "0vh";
               menuStatus.current = false;
               hamburgerRef1.current.style.transform = "rotate(0deg)";
               hamburgerRef3.current.style.transform = "rotate(0deg)";
               hamburgerRef2.current.style.transform = "translateX(0rem)";
             } else {
+              menuRef.current.style.visibility = "visible";
               menuRef.current.style.height = "100vh";
               menuStatus.current = true;
               hamburgerRef1.current.style.transform =
