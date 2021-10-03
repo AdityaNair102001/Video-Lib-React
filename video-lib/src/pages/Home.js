@@ -105,8 +105,9 @@ export function Home() {
             <div
               style={{
                 position: "fixed",
-                left: "45%",
-                top: "35%",
+                transform: "translate(-50%,-50%)",
+                left: "50%",
+                top: "50%",
                 zIndex: "1",
                 height: "fitContent",
                 minHeight: "10vh",
@@ -200,8 +201,9 @@ export function Home() {
     const modelBackground = showModal
       ? {
           position: "fixed",
-          left: "45%",
-          top: "35%",
+          transform: "translate(-50%,-50%)",
+          left: "50%",
+          top: "50%",
           zIndex: "1",
           // height: "fitContent",
           minHeight: "10vh",

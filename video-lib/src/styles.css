@@ -75,7 +75,6 @@ body {
   grid-area: h;
   height: 10vh;
   background-color: black;
-  position: relative;
   margin-bottom: 0 rem;
   box-shadow: 0 4px 8px 0 rgb(90, 87, 87), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: fixed;
@@ -219,14 +218,7 @@ body {
 
 @media (max-width: 40em) {
   .greeting {
-    position: absolute;
-    left: 3%;
-    top: 60%;
-    color: white;
-    background: black;
-    border: none;
-    font-size: 1rem;
-    text-decoration: none;
+    display: none;
   }
 
   .landing-logo {
@@ -286,7 +278,6 @@ body {
   }
 
   .logout-btn {
-    /* visibility: hidden; */
     display: none;
   }
 
@@ -295,6 +286,14 @@ body {
       "h h h"
       "m m m"
       "m m m";
+  }
+
+  .gicon-style {
+    color: white;
+  }
+
+  .gicon-style:hover {
+    color: #d6e0f1;
   }
 }
 
