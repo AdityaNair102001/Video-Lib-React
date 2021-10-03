@@ -137,6 +137,7 @@ export function Home() {
               </div>
               Enter Playlist Name:
               <input
+                style={{ width: "50%" }}
                 onChange={(event) => setPlaylistName(event.target.value)}
               ></input>
               <div>
