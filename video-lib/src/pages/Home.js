@@ -167,7 +167,7 @@ export function Home() {
 
   function ShowLoader() {
     return (
-      <div style={{ textAlign: "left", gridArea: "n" }}>
+      <div style={{ textAlign: "left", gridArea: "m" }}>
         <img
           style={{
             marginTop: "0rem",
