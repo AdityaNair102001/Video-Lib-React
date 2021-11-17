@@ -27,80 +27,162 @@ export function PlayList() {
     }
 
     return (
-      <div style={{ width: "100%", margin: "auto" }}>
-        <h3 style={{ textAlign: "left" }}>{playlistName}</h3>
+      <div>
         <div
-          style={{
-            border: "0.5px grey solid",
-            borderRight:"none",
-            borderLeft:"none",
-            margin: "auto",
-            width: "100%",
-            marginTop: "0.5rem",
-            display: "flex",
-            flexDirection: "row",
-            boxShadow: "0 8px 16px 0 rgba(0, 0, 0, 0.2)"
-          }}
+          className="playlist-slot-desktop"
+          style={{ width: "100%", margin: "auto" }}
         >
-          <button
-            onClick={() => {
-              leftScroll();
-            }}
-            style={{
-              // margin: "1rem",
-              margin: "auto",
-              marginLeft: "0rem",
-              // marginLeft:"0rem",
-              padding: "0.5rem",
-              backgroundColor: "white",
-              border: "none"
-            }}
-          >
-            <img src="https://img.icons8.com/dotty/80/000000/long-arrow-left.png" />
-          </button>{" "}
+          <h3 style={{ textAlign: "left" }}>{playlistName}</h3>
           <div
-            ref={scroller}
             style={{
+              border: "0.5px grey solid",
+              borderRight: "none",
+              borderLeft: "none",
+              margin: "auto",
+              width: "100%",
+              marginTop: "0.5rem",
               display: "flex",
               flexDirection: "row",
-              // overflowX: "auto",
-              overflowX: "hidden",
-              scrollBehavior: "smooth",
-              border: "1px #D1D9D9 solid"
+              boxShadow: "0 8px 16px 0 rgba(0, 0, 0, 0.2)",
             }}
           >
-            {" "}
-            {playlists[playlistName].map((itemInArray) => {
-              return (
-                <div style={{ border: "0.1px white solid" }}>
-                  <ReactPlayer
-                    width="300px"
-                    height="200px"
-                    controls={true}
-                    style={{ margin: "1rem" }}
-                    url={itemInArray.url}
-                  ></ReactPlayer>
-                  {itemInArray.title}
-                </div>
-              );
-            })}
+            <button
+              onClick={() => {
+                leftScroll();
+              }}
+              style={{
+                margin: "auto",
+                marginLeft: "0rem",
+                padding: "0.5rem",
+                backgroundColor: "white",
+                border: "none",
+              }}
+            >
+              <img src="https://img.icons8.com/dotty/80/000000/long-arrow-left.png" />
+            </button>{" "}
+            <div
+              ref={scroller}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                overflowX: "hidden",
+                scrollBehavior: "smooth",
+                border: "1px #D1D9D9 solid",
+              }}
+            >
+              {" "}
+              {playlists[playlistName].map((itemInArray) => {
+                return (
+                  <div style={{ border: "0.1px white solid" }}>
+                    <ReactPlayer
+                      width="300px"
+                      height="200px"
+                      controls={true}
+                      style={{ margin: "1rem" }}
+                      url={itemInArray.url}
+                    ></ReactPlayer>
+                    {itemInArray.title}
+                  </div>
+                );
+              })}
+            </div>
+            <button
+              onClick={() => rightScroll()}
+              style={{
+                margin: "auto",
+                marginRight: "0rem",
+                padding: "0.5rem",
+                backgroundColor: "white",
+                border: "1px white solid",
+              }}
+            >
+              <img src="https://img.icons8.com/dotty/80/000000/long-arrow-right.png" />
+            </button>
           </div>
-          <button
-            onClick={() => rightScroll()}
-            style={{
-              // margin: "1rem",
-              margin: "auto",
-              marginRight: "0rem",
-              padding: "0.5rem",
-              backgroundColor: "white",
-              border: "1px white solid"
-              // position:"relative",
-              // right:"0rem"
-            }}
-          >
-            <img src="https://img.icons8.com/dotty/80/000000/long-arrow-right.png" />
-            {/* <img style={{backgroundColor:"white"}} src={rightarrow} /> */}
-          </button>
+        </div>
+
+        <div className="playlist-slot-mobile">
+          <SinglePlaylistMobile
+            playlistName={playlistName}
+          ></SinglePlaylistMobile>
+        </div>
+      </div>
+    );
+  }
+
+  function SinglePlaylistMobile({ playlistName }) {
+    const droppedRef = useRef(false);
+    const dropDownRef = useRef("");
+    const dropDownParentRef = useRef("");
+    const dropDownChildRef = useRef("");
+
+    useEffect(() => {
+      dropDownRef.current.style.visibility = "hidden";
+      dropDownRef.current.style.height = "0rem";
+    });
+
+    function dropDownHandler() {
+      if (droppedRef.current === false) {
+        droppedRef.current = true;
+        dropDownRef.current.style.visibility = "visible";
+        dropDownRef.current.style.height = "100%";
+        dropDownRef.current.style.maxHeight = "700vh";
+        dropDownRef.current.style.transition = "all 0.4s";
+        dropDownParentRef.current.style.padding = "1rem";
+      } else {
+        dropDownRef.current.style.visibility = "hidden";
+        droppedRef.current = false;
+        dropDownRef.current.style.maxHeight = "0";
+        dropDownRef.current.style.height = "0rem";
+        dropDownRef.current.style.transition = "all 0.4s";
+        dropDownParentRef.current.style.padding = "0rem 1rem";
+      }
+    }
+
+    return (
+      <div
+        style={{
+          border: "black 1px solid",
+          margin: "1rem auto",
+          boxShadow: "inset rgb(0 0 0 / 20%) 0px 12px 13px 1px",
+          borderRadius: "0.4rem",
+        }}
+        ref={dropDownParentRef}
+        onClick={() => {
+          dropDownHandler();
+        }}
+      >
+        <h3 style={{ cursor: "pointer" }}>{playlistName}</h3>
+
+        <div ref={dropDownRef}>
+          {playlists[playlistName].map((itemInArray) => {
+            return (
+              <div
+                style={{
+                  borderBottom: "1px solid #b2a9a9",
+                  marginBottom: "1rem",
+                }}
+                ref={dropDownChildRef}
+              >
+                <ReactPlayer
+                  width="100%"
+                  height="100%"
+                  style={{ margin: "2rem 0rem", height: "200px" }}
+                  controls={true}
+                  url={itemInArray.url}
+                ></ReactPlayer>
+
+                <span
+                  style={{
+                    fontSize: "large",
+                    textDecoration: "strong",
+                  }}
+                >
+                  {itemInArray.title}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     );
@@ -109,23 +191,23 @@ export function PlayList() {
   function RenderPlaylists({ playlists }) {
     const playlistArray = Object.keys(playlists);
 
-    if(playlistArray.length>0){
+    if (playlistArray.length > 0) {
       return playlistArray
-      .reduce(function (result, playlistName) {
-        if (playlistName !== "Watch Later") {
-          result.push(playlistName);
-        }
+        .reduce(function (result, playlistName) {
+          if (playlistName !== "Watch Later") {
+            result.push(playlistName);
+          }
 
-        return result;
-      }, [])
-      .map((playlistName) => {
-        return (
-          <SinglePlaylistHorizontalSlot
-            playlistName={playlistName}
-          ></SinglePlaylistHorizontalSlot>
-        );
-      });
-    }else{
+          return result;
+        }, [])
+        .map((playlistName) => {
+          return (
+            <SinglePlaylistHorizontalSlot
+              playlistName={playlistName}
+            ></SinglePlaylistHorizontalSlot>
+          );
+        });
+    } else {
       return (
         <h2 style={{ margin: "auto", marginTop: "10%" }}>
           {" "}
@@ -133,31 +215,14 @@ export function PlayList() {
         </h2>
       );
     }
- 
   }
 
   function WatchLater({ watchLater }) {
-    // if(watchLater.length>0){
-    //   return (
-    //     <SinglePlaylistHorizontalSlot
-    //       playlistName={"Watch Later"}
-    //     ></SinglePlaylistHorizontalSlot>
-    //   );
-    // }else{
-    //   return (
-    //     <h2 style={{ margin: "auto", marginTop: "10%" }}>
-    //       {" "}
-    //       Nothing in Watch Later!
-    //     </h2>
-    //   );
-    // }
-
-        return (
-        <SinglePlaylistHorizontalSlot
-          playlistName={"Watch Later"}
-        ></SinglePlaylistHorizontalSlot>
-      );
-  
+    return (
+      <SinglePlaylistHorizontalSlot
+        playlistName={"Watch Later"}
+      ></SinglePlaylistHorizontalSlot>
+    );
   }
 
   async function getPlaylists() {
@@ -167,9 +232,8 @@ export function PlayList() {
       );
       console.log(response);
       if (response.data.success === true) {
-
         localStorage.setItem("user", JSON.stringify(response.data.user));
-  
+
         setPlaylists(response.data.user.playlists);
       }
     } catch (err) {
@@ -189,12 +253,16 @@ export function PlayList() {
       <div className="main-playlist" style={{}}>
         {playlists ? (
           <div style={{ width: "100%", margin: "auto" }}>
-            {playlists["Watch Later"]!=undefined?<WatchLater watchLater={playlists["Watch Later"]}></WatchLater>:<div></div>}
-            
-            <RenderPlaylists playlists={playlists}></RenderPlaylists>
+            <div style={{ width: "100%", margin: "auto" }}>
+              {playlists["Watch Later"] !== undefined ? (
+                <WatchLater watchLater={playlists["Watch Later"]}></WatchLater>
+              ) : (
+                <div></div>
+              )}
+              <RenderPlaylists playlists={playlists}></RenderPlaylists>
+            </div>
           </div>
         ) : (
-          // <RenderPlaylists playlists={playlists}></RenderPlaylists>
           <h1 style={{ margin: "auto" }}>Loading Playlists..</h1>
         )}
 

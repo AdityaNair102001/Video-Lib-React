@@ -111,7 +111,7 @@ export function Signup() {
       <div class="inputtext-holder" style={{ margin: "1rem" }}>
         <input
           class="input-standard"
-          type="text"
+          type="email"
           placeholder="Email"
           onChange={(event) => onChangeHandler(event, { type: "email" })}
         ></input>
@@ -119,7 +119,7 @@ export function Signup() {
       <div class="inputtext-holder" style={{ margin: "1rem" }}>
         <input
           class="input-standard"
-          type="text"
+          type="password"
           placeholder="Password"
           onChange={(event) => onChangeHandler(event, { type: "password" })}
         ></input>

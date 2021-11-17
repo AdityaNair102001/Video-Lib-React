@@ -31,15 +31,19 @@ export function HeaderHome() {
     return (
       <div className="menu-cover" style={{}} ref={menuRef}>
         <div style={{ marginTop: "5%" }}>
-          <h2
-            style={{
-              color: "white",
-              cursor: "pointer",
-              fontFamily: "Cormorant Unicase",
-            }}
-          >
-            Hi {JSON.parse(localStorage.getItem("user")).fname}!
-          </h2>
+          {localStorage.getItem("accessToken") ? (
+            <h2
+              style={{
+                color: "white",
+                cursor: "pointer",
+                fontFamily: "Cormorant Unicase",
+              }}
+            >
+              Hi {JSON.parse(localStorage.getItem("user")).fname}!
+            </h2>
+          ) : (
+            <div></div>
+          )}
         </div>
         <div
           style={{
@@ -206,7 +210,7 @@ export function HeaderHome() {
               style={{
                 position: "absolute",
                 margin: "1rem",
-                left: "3%",
+                left: "3rem",
                 top: "40%",
                 color: "white",
                 background: "black",
@@ -223,7 +227,7 @@ export function HeaderHome() {
               style={{
                 position: "absolute",
                 margin: "1rem",
-                left: "0%",
+                left: "0rem",
                 top: "40%",
                 color: "white",
                 background: "black",

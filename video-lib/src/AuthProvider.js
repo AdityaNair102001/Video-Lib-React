@@ -48,7 +48,7 @@ export function AuthContextProvider({ children }) {
       }
     } catch (err) {
       setShowLoader(false);
-      setLoginError(err.response.data.message);
+      setLoginError(err?.response?.data?.message);
       loginErrorHandler();
       localStorage.setItem("loginState", false);
     }

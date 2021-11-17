@@ -30,7 +30,7 @@ export function LikedVideosPage() {
             {
               userId: JSON.parse(localStorage.getItem("user"))._id,
               videoId,
-              type: "REMOVE"
+              type: "REMOVE",
             }
           );
 
@@ -54,7 +54,7 @@ export function LikedVideosPage() {
             marginTop: "3rem",
             position: "fixed",
             marginLeft: "1rem",
-            visibility: "hidden"
+            visibility: "hidden",
           }}
           src={processLoader}
           alt="Processing"
@@ -64,10 +64,26 @@ export function LikedVideosPage() {
     );
   }
 
-  function DeleteButton(){
+  function DeleteButton() {
     // const [color,setColor]=useState("black")
-    const deleteRef=useRef("black");
-    return ( <span class="material-icons" style={{position:"absolute"}} ref={deleteRef}  onMouseEnter={()=>{deleteRef.current.style.color="red"; deleteRef.current.style.fontSize="32px"}} onMouseLeave={()=>{deleteRef.current.style.color="black";deleteRef.current.style.fontSize="24px"}} >delete</span>)
+    const deleteRef = useRef("black");
+    return (
+      <span
+        class="material-icons"
+        style={{ position: "absolute" }}
+        ref={deleteRef}
+        onMouseEnter={() => {
+          deleteRef.current.style.color = "red";
+          deleteRef.current.style.fontSize = "32px";
+        }}
+        onMouseLeave={() => {
+          deleteRef.current.style.color = "black";
+          deleteRef.current.style.fontSize = "24px";
+        }}
+      >
+        delete
+      </span>
+    );
   }
 
   function RenderVideos(videos) {
@@ -90,12 +106,12 @@ export function LikedVideosPage() {
                 style={{
                   margin: "1rem 1rem",
                   backgroundColor: "white",
-                  border: "none"
+                  border: "none",
                 }}
               >
-                <div style={{height:"1rem"}}>
-               <DeleteButton></DeleteButton>
-               </div>
+                <div style={{ height: "1rem" }}>
+                  <DeleteButton></DeleteButton>
+                </div>
               </button>
             </div>
           </div>
@@ -148,7 +164,9 @@ export function LikedVideosPage() {
         {videos ? (
           RenderVideos(videos)
         ) : (
-          <h1 style={{ marginLeft: "38%" }}>Loading Videos..</h1>
+          <h1 style={{ margin: "auto", marginTop: "5%" }}>
+            Loading Liked Videos..
+          </h1>
         )}
       </div>
     </div>
