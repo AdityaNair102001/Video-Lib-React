@@ -7,7 +7,7 @@ import { PlayList } from "./pages/Playlist";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { LandingPage } from "./pages/LandingPage";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "./AuthProvider";
 import { PrivateRoute } from "./PrivateRoute";
 
